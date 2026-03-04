@@ -1,20 +1,34 @@
-import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useRef, useState } from 'react';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function CounterScreen() {
-  const [count, setCount] = useState(0);
+export default function UseRefScreen() {
+  const inputRef = useRef<TextInput>(null);
+  const [name, setName] = useState('');
+
+  function handleFocus() {
+    inputRef.current?.focus();
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.count}>{count}</Text>
-      <View style={styles.buttons}>
-        <Pressable style={styles.button} onPress={() => setCount(count - 1)}>
-          <Text style={styles.buttonText}>-</Text>
-        </Pressable>
-        <Pressable style={styles.button} onPress={() => setCount(count + 1)}>
-          <Text style={styles.buttonText}>+</Text>
-        </Pressable>
-      </View>
+      <Text style={styles.title}>useRef Example</Text>
+
+      <TextInput
+        ref={inputRef}
+        style={styles.input}
+        placeholder="Enter your name..."
+        placeholderTextColor="#888"
+        value={name}
+        onChangeText={setName}
+      />
+
+      {name !== '' && (
+        <Text style={styles.greeting}>Hello, {name}!</Text>
+      )}
+
+      <Pressable style={styles.button} onPress={handleFocus}>
+        <Text style={styles.buttonText}>Focus on input</Text>
+      </Pressable>
     </View>
   );
 }
@@ -24,28 +38,39 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 24,
   },
-  count: {
-    fontSize: 96,
+  title: {
+    fontSize: 32,
     fontWeight: 'bold',
-    color: 'white'
+    color: 'white',
+    marginBottom: 32,
   },
-  buttons: {
-    flexDirection: 'row',
-    gap: 24,
-    marginTop: 32,
+  input: {
+    width: '100%',
+    height: 48,
+    borderWidth: 1,
+    borderColor: '#0a7ea4',
+    borderRadius: 8,
+    paddingHorizontal: 16,
+    fontSize: 18,
+    color: 'white',
+    marginBottom: 16,
+  },
+  greeting: {
+    fontSize: 20,
+    color: '#0a7ea4',
+    marginBottom: 16,
   },
   button: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
     backgroundColor: '#0a7ea4',
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
   },
   buttonText: {
     color: '#fff',
-    fontSize: 32,
+    fontSize: 18,
     fontWeight: 'bold',
   },
 });
