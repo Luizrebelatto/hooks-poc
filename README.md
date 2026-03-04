@@ -24,3 +24,19 @@ function changeState(value) {
 changeState(2);
 console.log(state); // 2
 ```
+
+#### useEffect
+- its for lifecycle
+- run one time
+```javascript
+useEffect(() => {
+  console.log("Hello")
+},[])
+```
+- run every time the dependency change
+```javascript
+const [user, setUser] = useState();
+useEffect(() => {
+  console.log("Hello")
+},[user])
+```
