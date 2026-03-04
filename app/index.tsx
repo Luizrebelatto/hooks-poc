@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 export default function CounterScreen() {
   const [count, setCount] = useState(0);
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   count: {
     fontSize: 96,
     fontWeight: 'bold',
+    color: 'white'
   },
   buttons: {
     flexDirection: 'row',
