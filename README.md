@@ -1,3 +1,20 @@
+# Custom Hooks
+- a page should delegate and not implement all logic
+- functions that use hooks internally
+```javascript
+import { useEffect, useState } from "react";
+
+export default function useCustom(){
+    const [value, setValue] = useState('');
+    
+    useEffect(() => {
+        setValue('updated')
+    },[])
+
+    return value
+} 
+```
+
 # Hooks
 
 #### useState

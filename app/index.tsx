@@ -1,9 +1,12 @@
+import useCustom from '@/useCustom';
 import { useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function UseRefScreen() {
   const inputRef = useRef<TextInput>(null);
   const [name, setName] = useState('');
+
+  const value = useCustom()
 
   function handleFocus() {
     inputRef.current?.focus();
