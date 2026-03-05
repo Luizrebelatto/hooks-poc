@@ -108,3 +108,21 @@ export function UserProvider({ children }) {
   )
 }
 ```
+
+#### useMemo
+- stores computed values
+- avoids redoing complex calculations
+```javascript
+const result = useMemo(() => {
+  return expensiveFunction(data)
+}, [data])
+```
+
+#### useCallback
+- memorizes functions
+- used when passing functions to child components
+```javascript
+const handleClick = useCallback(() => {
+  console.log("click")
+}, [])
+```
